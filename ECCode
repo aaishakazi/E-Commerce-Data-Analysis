@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "kernelspec": {
+      "name": "python",
+      "display_name": "Python (Pyodide)",
+      "language": "python"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "python",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8"
+    },
+    "jupytext": {
+      "formats": "ipynb,auto:light"
+    }
+  },
+  "nbformat_minor": 5,
+  "nbformat": 4,
+  "cells": [
+    {
+      "id": "10a17c47-b6d2-43d3-826c-d4693050ac42",
+      "cell_type": "code",
+      "source": "import numpy as np\nimport pandas as pd\ndf = pd.read_csv(\"online_retail_II.csv.zip\") \ndf.head() # shows first 5 columns of the dataset",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "execution_count": 2,
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": "  Invoice StockCode                          Description  Quantity  \\\n0  489434     85048  15CM CHRISTMAS GLASS BALL 20 LIGHTS        12   \n1  489434    79323P                   PINK CHERRY LIGHTS        12   \n2  489434    79323W                  WHITE CHERRY LIGHTS        12   \n3  489434     22041         RECORD FRAME 7\" SINGLE SIZE         48   \n4  489434     21232       STRAWBERRY CERAMIC TRINKET BOX        24   \n\n           InvoiceDate  Price  Customer ID         Country  \n0  2009-12-01 07:45:00   6.95      13085.0  United Kingdom  \n1  2009-12-01 07:45:00   6.75      13085.0  United Kingdom  \n2  2009-12-01 07:45:00   6.75      13085.0  United Kingdom  \n3  2009-12-01 07:45:00   2.10      13085.0  United Kingdom  \n4  2009-12-01 07:45:00   1.25      13085.0  United Kingdom  ",
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Invoice</th>\n      <th>StockCode</th>\n      <th>Description</th>\n      <th>Quantity</th>\n      <th>InvoiceDate</th>\n      <th>Price</th>\n      <th>Customer ID</th>\n      <th>Country</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>489434</td>\n      <td>85048</td>\n      <td>15CM CHRISTMAS GLASS BALL 20 LIGHTS</td>\n      <td>12</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>6.95</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>489434</td>\n      <td>79323P</td>\n      <td>PINK CHERRY LIGHTS</td>\n      <td>12</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>6.75</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>489434</td>\n      <td>79323W</td>\n      <td>WHITE CHERRY LIGHTS</td>\n      <td>12</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>6.75</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>489434</td>\n      <td>22041</td>\n      <td>RECORD FRAME 7\" SINGLE SIZE</td>\n      <td>48</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>2.10</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>489434</td>\n      <td>21232</td>\n      <td>STRAWBERRY CERAMIC TRINKET BOX</td>\n      <td>24</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>1.25</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 2
+    },
+    {
+      "id": "7cf3f5c5-fd5a-4d90-9e2e-dbc6e2975623",
+      "cell_type": "code",
+      "source": "df.shape\n",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "execution_count": 4,
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": "(1067371, 8)"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 4
+    },
+    {
+      "id": "57a70db8-9f15-4093-b4f4-bfbbb4949389",
+      "cell_type": "code",
+      "source": "df.info()\n",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 1067371 entries, 0 to 1067370\nData columns (total 8 columns):\n #   Column       Non-Null Count    Dtype  \n---  ------       --------------    -----  \n 0   Invoice      1067371 non-null  object \n 1   StockCode    1067371 non-null  object \n 2   Description  1062989 non-null  object \n 3   Quantity     1067371 non-null  int64  \n 4   InvoiceDate  1067371 non-null  object \n 5   Price        1067371 non-null  float64\n 6   Customer ID  824364 non-null   float64\n 7   Country      1067371 non-null  object \ndtypes: float64(2), int64(1), object(5)\nmemory usage: 44.8+ MB\n"
+        }
+      ],
+      "execution_count": 7
+    },
+    {
+      "id": "7c63da47-e0fe-4b1f-9684-82125f9feb54",
+      "cell_type": "code",
+      "source": "df\n",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "execution_count": 8,
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": "        Invoice StockCode                          Description  Quantity  \\\n0        489434     85048  15CM CHRISTMAS GLASS BALL 20 LIGHTS        12   \n1        489434    79323P                   PINK CHERRY LIGHTS        12   \n2        489434    79323W                  WHITE CHERRY LIGHTS        12   \n3        489434     22041         RECORD FRAME 7\" SINGLE SIZE         48   \n4        489434     21232       STRAWBERRY CERAMIC TRINKET BOX        24   \n...         ...       ...                                  ...       ...   \n1067366  581587     22899         CHILDREN'S APRON DOLLY GIRL          6   \n1067367  581587     23254        CHILDRENS CUTLERY DOLLY GIRL          4   \n1067368  581587     23255      CHILDRENS CUTLERY CIRCUS PARADE         4   \n1067369  581587     22138        BAKING SET 9 PIECE RETROSPOT          3   \n1067370  581587      POST                              POSTAGE         1   \n\n                 InvoiceDate  Price  Customer ID         Country  \n0        2009-12-01 07:45:00   6.95      13085.0  United Kingdom  \n1        2009-12-01 07:45:00   6.75      13085.0  United Kingdom  \n2        2009-12-01 07:45:00   6.75      13085.0  United Kingdom  \n3        2009-12-01 07:45:00   2.10      13085.0  United Kingdom  \n4        2009-12-01 07:45:00   1.25      13085.0  United Kingdom  \n...                      ...    ...          ...             ...  \n1067366  2011-12-09 12:50:00   2.10      12680.0          France  \n1067367  2011-12-09 12:50:00   4.15      12680.0          France  \n1067368  2011-12-09 12:50:00   4.15      12680.0          France  \n1067369  2011-12-09 12:50:00   4.95      12680.0          France  \n1067370  2011-12-09 12:50:00  18.00      12680.0          France  \n\n[1067371 rows x 8 columns]",
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Invoice</th>\n      <th>StockCode</th>\n      <th>Description</th>\n      <th>Quantity</th>\n      <th>InvoiceDate</th>\n      <th>Price</th>\n      <th>Customer ID</th>\n      <th>Country</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>489434</td>\n      <td>85048</td>\n      <td>15CM CHRISTMAS GLASS BALL 20 LIGHTS</td>\n      <td>12</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>6.95</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>489434</td>\n      <td>79323P</td>\n      <td>PINK CHERRY LIGHTS</td>\n      <td>12</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>6.75</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>489434</td>\n      <td>79323W</td>\n      <td>WHITE CHERRY LIGHTS</td>\n      <td>12</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>6.75</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>489434</td>\n      <td>22041</td>\n      <td>RECORD FRAME 7\" SINGLE SIZE</td>\n      <td>48</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>2.10</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>489434</td>\n      <td>21232</td>\n      <td>STRAWBERRY CERAMIC TRINKET BOX</td>\n      <td>24</td>\n      <td>2009-12-01 07:45:00</td>\n      <td>1.25</td>\n      <td>13085.0</td>\n      <td>United Kingdom</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>1067366</th>\n      <td>581587</td>\n      <td>22899</td>\n      <td>CHILDREN'S APRON DOLLY GIRL</td>\n      <td>6</td>\n      <td>2011-12-09 12:50:00</td>\n      <td>2.10</td>\n      <td>12680.0</td>\n      <td>France</td>\n    </tr>\n    <tr>\n      <th>1067367</th>\n      <td>581587</td>\n      <td>23254</td>\n      <td>CHILDRENS CUTLERY DOLLY GIRL</td>\n      <td>4</td>\n      <td>2011-12-09 12:50:00</td>\n      <td>4.15</td>\n      <td>12680.0</td>\n      <td>France</td>\n    </tr>\n    <tr>\n      <th>1067368</th>\n      <td>581587</td>\n      <td>23255</td>\n      <td>CHILDRENS CUTLERY CIRCUS PARADE</td>\n      <td>4</td>\n      <td>2011-12-09 12:50:00</td>\n      <td>4.15</td>\n      <td>12680.0</td>\n      <td>France</td>\n    </tr>\n    <tr>\n      <th>1067369</th>\n      <td>581587</td>\n      <td>22138</td>\n      <td>BAKING SET 9 PIECE RETROSPOT</td>\n      <td>3</td>\n      <td>2011-12-09 12:50:00</td>\n      <td>4.95</td>\n      <td>12680.0</td>\n      <td>France</td>\n    </tr>\n    <tr>\n      <th>1067370</th>\n      <td>581587</td>\n      <td>POST</td>\n      <td>POSTAGE</td>\n      <td>1</td>\n      <td>2011-12-09 12:50:00</td>\n      <td>18.00</td>\n      <td>12680.0</td>\n      <td>France</td>\n    </tr>\n  </tbody>\n</table>\n<p>1067371 rows × 8 columns</p>\n</div>"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 8
+    },
+    {
+      "id": "52a39c03-49a5-4eef-a16c-7c8735c77a0d",
+      "cell_type": "code",
+      "source": "df.describe\n",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "execution_count": 9,
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": "<bound method NDFrame.describe of         Invoice StockCode                          Description  Quantity  \\\n0        489434     85048  15CM CHRISTMAS GLASS BALL 20 LIGHTS        12   \n1        489434    79323P                   PINK CHERRY LIGHTS        12   \n2        489434    79323W                  WHITE CHERRY LIGHTS        12   \n3        489434     22041         RECORD FRAME 7\" SINGLE SIZE         48   \n4        489434     21232       STRAWBERRY CERAMIC TRINKET BOX        24   \n...         ...       ...                                  ...       ...   \n1067366  581587     22899         CHILDREN'S APRON DOLLY GIRL          6   \n1067367  581587     23254        CHILDRENS CUTLERY DOLLY GIRL          4   \n1067368  581587     23255      CHILDRENS CUTLERY CIRCUS PARADE         4   \n1067369  581587     22138        BAKING SET 9 PIECE RETROSPOT          3   \n1067370  581587      POST                              POSTAGE         1   \n\n                 InvoiceDate  Price  Customer ID         Country  \n0        2009-12-01 07:45:00   6.95      13085.0  United Kingdom  \n1        2009-12-01 07:45:00   6.75      13085.0  United Kingdom  \n2        2009-12-01 07:45:00   6.75      13085.0  United Kingdom  \n3        2009-12-01 07:45:00   2.10      13085.0  United Kingdom  \n4        2009-12-01 07:45:00   1.25      13085.0  United Kingdom  \n...                      ...    ...          ...             ...  \n1067366  2011-12-09 12:50:00   2.10      12680.0          France  \n1067367  2011-12-09 12:50:00   4.15      12680.0          France  \n1067368  2011-12-09 12:50:00   4.15      12680.0          France  \n1067369  2011-12-09 12:50:00   4.95      12680.0          France  \n1067370  2011-12-09 12:50:00  18.00      12680.0          France  \n\n[1067371 rows x 8 columns]>"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 9
+    },
+    {
+      "id": "a051c87f-2703-46b2-8de3-e12910c942a6",
+      "cell_type": "raw",
+      "source": "df.describe()\n",
+      "metadata": {}
+    },
+    {
+      "id": "c20d865e-8595-4cf1-91f3-67f72f545cd2",
+      "cell_type": "code",
+      "source": "",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [],
+      "execution_count": null
+    }
+  ]
+}
