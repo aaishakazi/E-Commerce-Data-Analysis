@@ -34,8 +34,8 @@ This is a collaborative data analysis project to uncover key insights from an e-
 
 | Name | Role |
 |------|------|
-| **Mursaleen Muzaffar** | Sales insights, revenue trends, visualizations |
 | **Aaisha Kazi** | Data cleaning, preprocessing, initial analysis |
+| **Mursaleen Muzaffar** | Sales insights, revenue trends visualizations |
 
 ---
 
